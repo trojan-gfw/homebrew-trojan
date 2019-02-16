@@ -10,9 +10,10 @@ class Trojan < Formula
   depends_on "coreutils" => :test
 
   def install
+    system "sed", "-i", "", "s/server\\.json/client.json/", "CMakeLists.txt"
+    system "sed", "-i", "", "s/\"cert\": \"\"/\"cert\": \"\\/etc\\/ssl\\/cert.pem\"/", "examples/client.json-example"
     system "cmake", ".", *std_cmake_args, "-DENABLE_MYSQL=OFF"
     system "make", "install"
-    etc.install "examples/client.json-example" => "trojan/config.json"
   end
 
   plist_options :manual => "trojan -c #{HOMEBREW_PREFIX}/etc/trojan/config.json"
