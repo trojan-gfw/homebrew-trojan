@@ -12,6 +12,7 @@ class Trojan < Formula
   def install
     system "cmake", ".", *std_cmake_args, "-DENABLE_MYSQL=OFF"
     system "make", "install"
+    etc.install "examples/client.json-example" => "trojan/config.json"
   end
 
   plist_options :manual => "trojan -c #{HOMEBREW_PREFIX}/etc/trojan/config.json"
