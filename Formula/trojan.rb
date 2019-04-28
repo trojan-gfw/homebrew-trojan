@@ -41,7 +41,7 @@ class Trojan < Formula
   end
 
   test do
-    system "git", "clone", "--branch=v1.10.1", "https://github.com/trojan-gfw/trojan.git"
+    system "git", "clone", "--branch=v1.12.1", "https://github.com/trojan-gfw/trojan.git"
     system "sh", "-c", "cd trojan/tests/LinuxSmokeTest && ./basic.sh /usr/local/bin/trojan"
     system "sh", "-c", "cd trojan/tests/LinuxSmokeTest && ./fake-client.sh /usr/local/bin/trojan"
   end
