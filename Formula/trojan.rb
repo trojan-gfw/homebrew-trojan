@@ -1,8 +1,8 @@
 class Trojan < Formula
   desc "An unidentifiable mechanism that helps you bypass GFW."
   homepage "https://trojan-gfw.github.io/trojan/"
-  url "https://github.com/trojan-gfw/trojan/archive/v1.12.3.tar.gz"
-  sha256 "390a2e63f4b4239570499780fd652474a0004d0d749c2eac29dcb049988dc863"
+  url "https://github.com/trojan-gfw/trojan/archive/v1.13.0.tar.gz"
+  sha256 "672412bb3ae9cf131a306d9284dff7fa5ed874c0fd022de22f993320c1f5beae"
   depends_on "cmake" => :build
   depends_on "boost"
   depends_on "openssl@1.1"
@@ -41,8 +41,8 @@ class Trojan < Formula
   end
 
   test do
-    system "git", "clone", "--branch=v1.12.3", "https://github.com/trojan-gfw/trojan.git"
-    system "sh", "-c", "cd trojan/tests/LinuxSmokeTest && ./basic.sh /usr/local/bin/trojan"
-    system "sh", "-c", "cd trojan/tests/LinuxSmokeTest && ./fake-client.sh /usr/local/bin/trojan"
+    system "git", "clone", "--branch=v1.13.0", "https://github.com/trojan-gfw/trojan.git"
+    system "sh", "-c", "trojan/tests/LinuxSmokeTest/basic.sh /usr/local/bin/trojan"
+    system "sh", "-c", "trojan/tests/LinuxSmokeTest/fake-client.sh /usr/local/bin/trojan"
   end
 end
