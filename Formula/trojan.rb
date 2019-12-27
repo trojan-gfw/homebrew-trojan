@@ -1,8 +1,8 @@
 class Trojan < Formula
   desc "An unidentifiable mechanism that helps you bypass GFW."
   homepage "https://trojan-gfw.github.io/trojan/"
-  url "https://github.com/trojan-gfw/trojan/archive/v1.13.0.tar.gz"
-  sha256 "672412bb3ae9cf131a306d9284dff7fa5ed874c0fd022de22f993320c1f5beae"
+  url "https://github.com/trojan-gfw/trojan/archive/v1.14.0.tar.gz"
+  sha256 "3a6dfbb5cb1760c4fd7c6243458c98ce6bfa24a02106405715143cda0bf4e59f"
   depends_on "cmake" => :build
   depends_on "boost"
   depends_on "openssl@1.1"
@@ -11,7 +11,6 @@ class Trojan < Formula
 
   def install
     system "sed", "-i", "", "s/server\\.json/client.json/", "CMakeLists.txt"
-    system "sed", "-i", "", "s/\"cert\": \"\"/\"cert\": \"\\/etc\\/ssl\\/cert.pem\"/", "examples/client.json-example"
     system "cmake", ".", *std_cmake_args, "-DENABLE_MYSQL=OFF"
     system "make", "install"
   end
@@ -41,7 +40,7 @@ class Trojan < Formula
   end
 
   test do
-    system "git", "clone", "--branch=v1.13.0", "https://github.com/trojan-gfw/trojan.git"
+    system "git", "clone", "--branch=v1.14.0", "https://github.com/trojan-gfw/trojan.git"
     system "sh", "-c", "trojan/tests/LinuxSmokeTest/basic.sh /usr/local/bin/trojan"
     system "sh", "-c", "trojan/tests/LinuxSmokeTest/fake-client.sh /usr/local/bin/trojan"
   end
