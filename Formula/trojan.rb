@@ -30,7 +30,7 @@ class Trojan < Formula
       <string>#{plist_name}</string>
       <key>ProgramArguments</key>
       <array>
-        <string>#{bin}/trojan</string>
+        <string>#{opt_bin}/trojan</string>
         <string>-c</string>
         <string>#{etc}/trojan/config.json</string>
       </array>
