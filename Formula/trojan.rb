@@ -1,8 +1,8 @@
 class Trojan < Formula
   desc "An unidentifiable mechanism that helps you bypass GFW."
   homepage "https://trojan-gfw.github.io/trojan/"
-  url "https://github.com/trojan-gfw/trojan/archive/v1.15.1.tar.gz"
-  sha256 "ab5ed59573085e69164dce677656951d502ee6cdf0890137f6868da7af3c0ffd"
+  url "https://github.com/trojan-gfw/trojan/archive/v1.16.0.tar.gz"
+  sha256 "86cdb2685bb03a63b62ce06545c41189952f1ec4a0cd9147450312ed70956cbc"
   depends_on "cmake" => :build
   depends_on "boost"
   depends_on "openssl@1.1"
@@ -15,7 +15,7 @@ class Trojan < Formula
     system "make", "install"
   end
 
-  plist_options :manual => "trojan -c #{HOMEBREW_PREFIX}/etc/trojan/config.json"
+  plist_options :manual => "trojan #{HOMEBREW_PREFIX}/etc/trojan/config.json"
 
   def plist; <<~EOS
   <?xml version="1.0" encoding="UTF-8"?>
@@ -31,17 +31,10 @@ class Trojan < Formula
       <key>ProgramArguments</key>
       <array>
         <string>#{opt_bin}/trojan</string>
-        <string>-c</string>
         <string>#{etc}/trojan/config.json</string>
       </array>
     </dict>
   </plist>
   EOS
-  end
-
-  test do
-    system "git", "clone", "--branch=v1.15.1", "https://github.com/trojan-gfw/trojan.git"
-    system "sh", "-c", "trojan/tests/LinuxSmokeTest/basic.sh /usr/local/bin/trojan"
-    system "sh", "-c", "trojan/tests/LinuxSmokeTest/fake-client.sh /usr/local/bin/trojan"
   end
 end
