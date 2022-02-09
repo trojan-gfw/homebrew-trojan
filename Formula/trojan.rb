@@ -11,7 +11,7 @@ class Trojan < Formula
 
   def install
     system "sed", "-i", "", "s/server\\.json/client.json/", "CMakeLists.txt"
-    system "sed", "-i", "", "s/${CMAKE_INSTALL_FULL_SYSCONFDIR}/#{HOMEBREW_PREFIX.to_s.gsub('/', '\/')}\\/etc/", "CMakeLists.txt"
+    system "sed", "-i", "", "s:${CMAKE_INSTALL_FULL_SYSCONFDIR}:#{etc}:", "CMakeLists.txt"
     system "cmake", ".", *std_cmake_args, "-DENABLE_MYSQL=OFF"
     system "make", "install"
   end
