@@ -5,7 +5,7 @@ class Trojan < Formula
   sha256 "86cdb2685bb03a63b62ce06545c41189952f1ec4a0cd9147450312ed70956cbc"
   depends_on "cmake" => :build
   depends_on "boost"
-  depends_on "openssl@1.1"
+  depends_on "openssl"
   depends_on "python" => :test
   depends_on "coreutils" => :test
 
